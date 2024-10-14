@@ -158,7 +158,9 @@ def login_to_website(driver, email, password, login_url, max_retry_multiplier):
                 EC.presence_of_element_located((By.XPATH, "//button[text()='ACCESS MY ACCOUNT']"))
             )
             logging.info('Login page loaded successfully!')
-            
+
+            driver.find_element(By.XPATH, "//button[text()='ACCEPT ALL']").click()
+
             logging.info('Entering credentials...')
             username = driver.find_element(By.NAME, "user")
             username.clear()
@@ -176,6 +178,8 @@ def login_to_website(driver, email, password, login_url, max_retry_multiplier):
             WebDriverWait(driver, 30).until(
                 EC.presence_of_element_located((By.XPATH, "//button[text()='Logout']"))
             )
+            
+            driver.find_element(By.XPATH, "//button[text()='ACCEPT ALL']").click()
             logging.info('Login successful!')
             time.sleep(random.randint(3, 11))
             return True
